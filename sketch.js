@@ -34,8 +34,8 @@ function setup() {
   // Start detecting hands
   handPose.detectStart(video, gotHands);
 
-  // Set drawing mode to retain previous drawings
-  background(0); // Set initial background
+  // Set initial background
+  background(0);
 }
 
 function draw() {
@@ -84,6 +84,5 @@ function draw() {
     isDragging = false;
     prevX = null;
     prevY = null; // Reset previous position to stop drawing the trail
-
-
-}  }  
+  }
+}
