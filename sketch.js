@@ -79,7 +79,7 @@ function draw() {
     }
   }
 
-  // Reset dragging state and trail when no hands are detected
+  // Reset dragging state when no hands are detected
   if (hands.length === 0 || !isDragging) {
     isDragging = false;
     prevX = null;
