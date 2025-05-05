@@ -58,6 +58,7 @@ function draw() {
         stroke(255, 0, 0); // Red color for the trail
         strokeWeight(10); // Set line thickness to 10
         if (prevX !== null && prevY !== null) {
+          // Draw the line on a separate layer
           line(prevX, prevY, indexFinger.x, indexFinger.y);
         }
         prevX = indexFinger.x;
