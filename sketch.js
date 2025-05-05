@@ -54,35 +54,27 @@ function draw() {
         // Get the position of the index finger (keypoint 8)
         let indexFinger = hand.keypoints[8];
 
+        // Draw the trail
+        stroke(255, 0, 0); // Red color for the trail
+        strokeWeight(10); // Set line thickness to 10
+        if (prevX !== null && prevY !== null) {
+          line(prevX, prevY, indexFinger.x, indexFinger.y);
+        }
+        prevX = indexFinger.x;
+        prevY = indexFinger.y;
+
         // Check if the index finger is touching the circle
         let d = dist(indexFinger.x, indexFinger.y, circleX, circleY);
         if (d < circleSize / 2) {
-          isDragging = true;
-        }
-
-        // If dragging, move the circle to follow the index finger
-        if (isDragging) {
-          // Draw the trail
-          stroke(255, 0, 0); // Red color for the trail
-          strokeWeight(10); // Set line thickness to 10
-          if (prevX !== null && prevY !== null) {
-            line(prevX, prevY, indexFinger.x, indexFinger.y);
-          }
-          prevX = indexFinger.x;
-          prevY = indexFinger.y;
-
           // Update circle position
           circleX = indexFinger.x;
           circleY = indexFinger.y;
         }
       }
     }
-  }
-
-  // Reset dragging state when no hands are detected
-  if (hands.length === 0 || !isDragging) {
-    isDragging = false;
+  } else {
+    // Reset previous position when no hands are detected
     prevX = null;
-    prevY = null; // Reset previous position to stop drawing the trail
+    prevY = null;
   }
 }
